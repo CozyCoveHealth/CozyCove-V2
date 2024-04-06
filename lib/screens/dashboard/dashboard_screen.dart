@@ -1,20 +1,22 @@
 import 'package:cozy_cove/constants/custom_colors.dart';
+import 'package:cozy_cove/screens/app_view_model.dart';
 import 'package:cozy_cove/screens/dashboard/counsellors_screen.dart';
 import 'package:cozy_cove/utils/spacers.dart';
 import 'package:cozy_cove/widgets/chat_list_widget.dart';
 import 'package:cozy_cove/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatefulHookConsumerWidget {
   const HomeScreen({
     super.key,
   });
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  ConsumerState<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen>
+class _HomeScreenState extends ConsumerState<HomeScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
   int selectedIndex = 0;
@@ -112,9 +114,13 @@ class _HomeScreenState extends State<HomeScreen>
                 child: TabBarView(
                   physics: const NeverScrollableScrollPhysics(),
                   controller: _tabController,
-                  children: const [
-                    ChatListWidget(),
-                    CounsellorScreen(),
+                  children: [
+                    const ChatListWidget(),
+                    ref.watch(hasPaidProvider)
+                        ? const ChatListWidget(
+                            showCouncellor: true,
+                          )
+                        : const CounsellorScreen(),
                   ],
                 ),
               ),

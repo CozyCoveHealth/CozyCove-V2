@@ -36,6 +36,19 @@
 	<string>Cozy Cove App wants to use your local network</string>
 	<key>NSBluetoothAlwaysUsageDescription</key>
 	<string>Cozy Cove needs access to bluetooth to connect to nearby devices.</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+		<key>CFBundleTypeRole</key>
+		<string>Editor</string>
+		<key>CFBundleURLName</key>
+		<string>com.example.solanaWalletTest</string>
+		<key>CFBundleURLSchemes</key>
+		<array>
+			<string>app</string>
+		</array>
+		</dict>
+	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

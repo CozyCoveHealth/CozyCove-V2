@@ -6,8 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ChatListWidget extends StatelessWidget {
+  final bool showCouncellor;
   const ChatListWidget({
     super.key,
+    this.showCouncellor = false,
   });
 
   @override
@@ -19,131 +21,134 @@ class ChatListWidget extends StatelessWidget {
       itemCount: chatLists.length,
       itemBuilder: (context, index) {
         var chat = chatLists[index];
-        return GestureDetector(
-          onTap: () {
-            Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => ChatScreen(
-                      title: chat.title,
-                      isCounsellor: chat.isCouncellor,
-                    )));
-          },
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Container(
-                        height: 45,
-                        width: 45,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          image: DecorationImage(
-                            image: AssetImage(chat.imageUrl!),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                      horizontalSpacer(10),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              Text(
-                                chat.title,
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 16.sp,
-                                    color: CustomColors.blackTextColor),
-                              ),
-                              chat.subTitle != null
-                                  ? RichText(
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                      text: TextSpan(
-                                        text: " | ",
-                                        style: TextStyle(
-                                            fontSize: 14.sp,
-                                            color: CustomColors.blackTextColor),
-                                        children: [
-                                          TextSpan(
-                                            text: chat.subTitle!,
-                                            style: TextStyle(
-                                                fontSize: 14.sp,
-                                                color: CustomColors
-                                                    .blackTextColor),
-                                          )
-                                        ],
-                                      ),
-                                    )
-                                  : const SizedBox.shrink()
-                            ],
-                          ),
-                          verticalSpacer(3),
-                          Text(
-                            chat.lastMessage,
-                            maxLines: 1,
-                            style: TextStyle(
-                                fontSize: 14.sp,
-                                color: CustomColors.greyTextColor),
-                          )
-                        ],
-                      )
-                    ],
-                  ),
-                  chat.unreadMessages == null
-                      ? Align(
-                          alignment: Alignment.topCenter,
-                          child: Text(
-                            chat.lastMessageTime,
-                            style: TextStyle(
-                                fontSize: 14.sp,
-                                color: CustomColors.greyTextColor),
-                          ),
-                        )
-                      : Column(
+        return (showCouncellor && (index == 0 || index == 2))
+            ? const SizedBox.shrink()
+            : GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => ChatScreen(
+                            title: chat.title,
+                            isCounsellor: chat.isCouncellor,
+                          )));
+                },
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
                           children: [
-                            Text(
-                              chat.lastMessageTime,
-                              style: TextStyle(
-                                  fontSize: 14.sp,
-                                  color: CustomColors.mainBlueColor),
-                            ),
-                            verticalSpacer(5),
                             Container(
-                              height: 20,
-                              width: 20,
-                              decoration: const BoxDecoration(
+                              height: 45,
+                              width: 45,
+                              decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: CustomColors.mainBlueColor,
-                              ),
-                              child: Center(
-                                child: Text(
-                                  chat.unreadMessages.toString(),
-                                  style: TextStyle(
-                                      fontSize: 12.sp,
-                                      color: CustomColors.whiteColor),
+                                image: DecorationImage(
+                                  image: AssetImage(chat.imageUrl!),
+                                  fit: BoxFit.cover,
                                 ),
                               ),
+                            ),
+                            horizontalSpacer(10),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    Text(
+                                      chat.title,
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 16.sp,
+                                          color: CustomColors.blackTextColor),
+                                    ),
+                                    chat.subTitle != null
+                                        ? RichText(
+                                            maxLines: 1,
+                                            overflow: TextOverflow.ellipsis,
+                                            text: TextSpan(
+                                              text: " | ",
+                                              style: TextStyle(
+                                                  fontSize: 14.sp,
+                                                  color: CustomColors
+                                                      .blackTextColor),
+                                              children: [
+                                                TextSpan(
+                                                  text: chat.subTitle!,
+                                                  style: TextStyle(
+                                                      fontSize: 14.sp,
+                                                      color: CustomColors
+                                                          .blackTextColor),
+                                                )
+                                              ],
+                                            ),
+                                          )
+                                        : const SizedBox.shrink()
+                                  ],
+                                ),
+                                verticalSpacer(3),
+                                Text(
+                                  chat.lastMessage,
+                                  maxLines: 1,
+                                  style: TextStyle(
+                                      fontSize: 14.sp,
+                                      color: CustomColors.greyTextColor),
+                                )
+                              ],
                             )
                           ],
                         ),
-                ],
-              ),
-              verticalSpacer(10),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 15.0),
-                child: Divider(
-                  color: CustomColors.otpInputColor,
+                        chat.unreadMessages == null
+                            ? Align(
+                                alignment: Alignment.topCenter,
+                                child: Text(
+                                  chat.lastMessageTime,
+                                  style: TextStyle(
+                                      fontSize: 14.sp,
+                                      color: CustomColors.greyTextColor),
+                                ),
+                              )
+                            : Column(
+                                children: [
+                                  Text(
+                                    chat.lastMessageTime,
+                                    style: TextStyle(
+                                        fontSize: 14.sp,
+                                        color: CustomColors.mainBlueColor),
+                                  ),
+                                  verticalSpacer(5),
+                                  Container(
+                                    height: 20,
+                                    width: 20,
+                                    decoration: const BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: CustomColors.mainBlueColor,
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        chat.unreadMessages.toString(),
+                                        style: TextStyle(
+                                            fontSize: 12.sp,
+                                            color: CustomColors.whiteColor),
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                      ],
+                    ),
+                    verticalSpacer(10),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 15.0),
+                      child: Divider(
+                        color: CustomColors.otpInputColor,
+                      ),
+                    ),
+                    verticalSpacer(10),
+                  ],
                 ),
-              ),
-              verticalSpacer(10),
-            ],
-          ),
-        );
+              );
       },
     );
   }
