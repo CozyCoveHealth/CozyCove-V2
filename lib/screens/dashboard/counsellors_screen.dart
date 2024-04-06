@@ -3,15 +3,18 @@ import 'dart:developer';
 import 'package:cozy_cove/constants/custom_colors.dart';
 import 'package:cozy_cove/constants/custom_string.dart';
 import 'package:cozy_cove/dialogs_and_popups/error_dialog.dart';
+import 'package:cozy_cove/dialogs_and_popups/generic_dialog.dart';
 import 'package:cozy_cove/globals.dart';
 import 'package:cozy_cove/screens/app_view_model.dart';
 import 'package:cozy_cove/screens/authentication/sign_in/pseudonym_input_screen.dart';
 import 'package:cozy_cove/screens/authentication/sign_up/sign_in_screen.dart';
+import 'package:cozy_cove/utils/enum.dart';
 import 'package:cozy_cove/utils/spacers.dart';
 import 'package:cozy_cove/widgets/custom_border_button.dart';
 import 'package:cozy_cove/widgets/new_custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:uni_links/uni_links.dart';
 import 'dart:async';
@@ -68,20 +71,40 @@ class _CounsellorScreenState extends ConsumerState<CounsellorScreen> {
           case "onConnect":
             Map dataConnect = phantom.onConnectToWallet(queryParams);
             inspect(dataConnect);
+
             ref.read(publicKeyProvider.notifier).state = dataConnect.toString();
 
             // Global.publicKey = dataConnect.toString();
             textLogger(dataConnect.toString());
+            GenericDialog().showSimplePopup(
+              context: context,
+              type: InfoBoxType.success,
+              content: "Your wallet has been successfully connected.",
+              onOkPressed: () {
+                Navigator.pop(context);
+              },
+            );
 
             break;
           case "onSignAndSendTransaction":
-            ref.read(hasPaidProvider.notifier).state = true;
-            Map dataSignAndSendTransaction =
-                phantom.onCreateSignAndSendTransactionReceive(queryParams);
-            inspect(dataSignAndSendTransaction);
-            ref.read(hasPaidProvider.notifier).state = true;
+            if (mounted) {
+              ref.read(hasPaidProvider.notifier).state = true;
+              Fluttertoast.showToast(msg: "Your Transaction was successfull");
+              // GenericDialog().showSimplePopup(
+              //   context: context,
+              //   type: InfoBoxType.success,
+              //   content: "Your Transaction was successfull",
+              //   onOkPressed: () {
+              //     Navigator.pop(context);
+              //   },
+              // );
+              // Map dataSignAndSendTransaction =
+              //     phantom.onCreateSignAndSendTransactionReceive(queryParams);
+              // inspect(dataSignAndSendTransaction);
+              ref.read(hasPaidProvider.notifier).state = true;
+            }
 
-            textLogger(dataSignAndSendTransaction.toString());
+            // textLogger(dataSignAndSendTransaction.toString());
             break;
           case "onDisconnect":
             String dataDisconnect = phantom.onDisconnectReceive();
@@ -215,8 +238,14 @@ class _CounsellorScreenState extends ConsumerState<CounsellorScreen> {
           isLoading = false;
           isButtonLoading = true;
         });
-        const ErrorDialog(
-          errorMessage: "error,  make sure your connect to wallet ",
+
+        GenericDialog().showSimplePopup(
+          context: context,
+          type: InfoBoxType.success,
+          content: "error,  make sure your connect to wallet",
+          onOkPressed: () {
+            Navigator.pop(context);
+          },
         );
         textLogger("error,  make sure your connect to wallet \n \n <<$e>> ");
       }
@@ -262,8 +291,13 @@ class _CounsellorScreenState extends ConsumerState<CounsellorScreen> {
         setState(() {
           isLoading = false;
         });
-        const ErrorDialog(
-          errorMessage: "error,  make sure your connect to wallet ",
+        GenericDialog().showSimplePopup(
+          context: context,
+          type: InfoBoxType.success,
+          content: "error,  make sure your connect to wallet",
+          onOkPressed: () {
+            Navigator.pop(context);
+          },
         );
         textLogger("error,  make sure your connect to wallet \n \n <<$e>> ");
       }
@@ -286,8 +320,13 @@ class _CounsellorScreenState extends ConsumerState<CounsellorScreen> {
         setState(() {
           isLoading = false;
         });
-        const ErrorDialog(
-          errorMessage: "error,  you are not connect to wallet",
+        GenericDialog().showSimplePopup(
+          context: context,
+          type: InfoBoxType.success,
+          content: "error,  make sure your connect to wallet",
+          onOkPressed: () {
+            Navigator.pop(context);
+          },
         );
         textLogger("error,  you are not connect to wallet");
       }
@@ -457,6 +496,7 @@ class _CounsellorScreenState extends ConsumerState<CounsellorScreen> {
                   title: "Pay 10 USDC to continue",
                   onTap: () {
                     _showBottomModal(context, () {
+                      Navigator.pop(context);
                       signAndSendTransaction();
                     });
 
@@ -466,7 +506,6 @@ class _CounsellorScreenState extends ConsumerState<CounsellorScreen> {
                   isLoading: isButtonLoading,
                   title: "Connect Wallet",
                   onTap: () async {
-                    Navigator.pop(context);
                     connectToWallet();
                     // setState(() {
                     //   isButtonLoading = true;

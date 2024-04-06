@@ -56,6 +56,8 @@ dependencies:
   flutter_phantom: ^1.0.1
   uni_links: ^0.5.1
   url_launcher: ^6.2.5
+  lottie: ^3.0.0
+  fluttertoast: ^8.2.4
   # solana_wallets_flutter: ^1.1.1
   # solana: ^0.30.4
   # huddle01_flutter_client: ^0.0.1-beta-v5.5.2
@@ -89,6 +91,10 @@ flutter:
     - assets/images/
     - assets/images/old/
     - assets/fonts/
+    - assets/animations/
+
+
+    
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

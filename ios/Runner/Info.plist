@@ -42,7 +42,7 @@
 		<key>CFBundleTypeRole</key>
 		<string>Editor</string>
 		<key>CFBundleURLName</key>
-		<string>com.example.solanaWalletTest</string>
+		<string>com.example.cozyCove</string>
 		<key>CFBundleURLSchemes</key>
 		<array>
 			<string>app</string>

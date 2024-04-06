@@ -28,6 +28,13 @@ class CustomColors {
   static const chatTextColor = Color(0xFF0C2338);
   static const messageBorderColor = Color(0xFFE3E4E6);
 
+  ///
+  ///
+  static const greenBgColor = Color(0xFF4EBF6E);
+  static const redBgColor = Color(0xFFDA5552);
+  static const warningBgColor = Color(0xFFEB6E13);
+  static const primaryAccentColor = Color(0xFFD2A600);
+
   //////
   static const contactBlackBgColor = Color(0xFF11071C);
   static const contactBlueBgColor = Color(0xFF0B3868);
