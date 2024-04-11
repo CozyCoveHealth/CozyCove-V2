@@ -42,7 +42,6 @@ To address the stigma surrounding therapy, we enable our customers to freely exp
 - Solana Testnet: We used Solana Testnet blockchain technnology to power CozyCove.
 - Flutter: The mobile frontend of our platform is built using Flutter
 - Node.js: We used Node.js to develop the server-side components and facilitate backend functionalities.
-- Express: Express.js is employed as the web application framework for handling server-side routing and requests.
 - MongoDB: We utilize MongoDB as the database to store user profiles, preferences, and other relevant data.
 
 
