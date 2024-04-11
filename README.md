@@ -1,7 +1,7 @@
 # cozy_cove
-Link to presentation slides:[View Slide](https://www.canva.com/design/DAGBjHD4ESA/g7eSXbgjSGMA5KEUvdwq-Q/edit?utm_content=DAGBjHD4ESA&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+Link to presentation slides: [View Slide](https://www.canva.com/design/DAGBjHD4ESA/g7eSXbgjSGMA5KEUvdwq-Q/edit?utm_content=DAGBjHD4ESA&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
 
-Link to demo:[Watch Demo](https://youtu.be/MugokrmuCO0)
+Link to demo: [Watch Demo](https://youtu.be/MugokrmuCO0)
 
 ## Introduction
 Welcome to the documentation for the CozyCove Mental Wellness Platform on Solana! This project aims to develop a decentralized platform that provides users with a safe, secure, and anonymous space to connect with others and receive support for their mental health challenges. Leveraging the power of blockchain technology, our platform ensures user privacy and security while offering a wide range of features and tools to manage mental health effectively.
