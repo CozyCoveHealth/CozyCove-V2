@@ -33,7 +33,7 @@ To address the stigma surrounding therapy, we enable our customers to freely exp
 - Activity Tracking: Users can track their mental health activities, set goals, and receive reminders to practice self-care and maintain a healthy routine.
 - Mood Journaling: A built-in mood journaling feature allows users to log their emotions, helping them identify patterns and gain insights into their mental well-being.
 - Rewards System: Users can earn rewards and recognition for their contributions to the community, motivating positive engagement and support.
-- Tokens for Gamification: NFTs are utilized for gamification purposes, allowing users to earn unique and valuable digital assets as they engage with the platform.
+- Tokens for Gamification: Tokens are utilized for gamification purposes, allowing users to earn unique and valuable digital assets as they engage with the platform.
 ## Technologies Used
 - Blockchain: We leverage blockchain technology to ensure the security, transparency, and privacy of user interactions and data.
 - Smart Contracts: Smart contracts facilitate secure and automated execution of actions, ensuring trust and reliability within the platform.
